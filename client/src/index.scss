@@ -1,0 +1,92 @@
+$GREY: #f0f2f5;
+html, body {
+  font-size: 18px;
+}
+
+#web, #web > .ant-layout {
+  height: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
+.content-container {
+  min-height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+// LOGIN & REGISTER
+.login-form, .register-form {
+  margin: 0 auto;
+  background-color: $GREY;
+  padding: 40px;
+  border-radius: 3px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+  &-forgot {
+    float: right;
+  }
+
+  &-button {
+    width: 100%;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .full-center {
+    text-align: center;
+
+    & > [class*="ant-col"] {
+      width: 100% !important;
+    }
+  }
+
+  .countryPhone {
+    opacity: .4;
+    pointer-events: none;
+
+    &.valid{
+      opacity: 1;
+      pointer-events: visible;
+    }
+
+    & .print-phone {
+      width: 25%;
+      display: inline-block;
+      height: 32px;
+      background-color: #fafafa;
+      border: 1px solid #d9d9d9;
+      border-right: 0;
+      line-height: 32px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    & input {
+      width: calc(75% - 2px);
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      vertical-align: middle;
+    }
+  }
+}
+
+.login-form {
+  max-width: 340px;
+}
+
+.register-form {
+  max-width: 700px;
+}
+
+footer {
+  text-align: center;
+}
