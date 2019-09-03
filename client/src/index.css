@@ -8,10 +8,13 @@ html, body {
   text-align: center; }
 
 .content-container {
-  min-height: 100%;
-  align-items: center;
+  height: 100%; }
+
+.register-form-center, .login-form-center {
   display: flex;
-  justify-content: center; }
+  align-items: center;
+  justify-content: center;
+  height: 100%; }
 
 .login-form, .register-form {
   margin: 0 auto;
@@ -54,13 +57,20 @@ html, body {
       border-bottom-left-radius: 0;
       vertical-align: middle; }
 
-.login-form {
-  max-width: 340px; }
-
-.register-form {
-  max-width: 700px; }
-
 footer {
   text-align: center; }
+
+.dashboard {
+  height: 100%; }
+  .dashboard .ant-layout-content {
+    margin-bottom: 0 !important; }
+  .dashboard .ant-menu-dark li:first-child {
+    margin-top: 0; }
+  .dashboard .ant-layout-header {
+    padding: 0 15px !important; }
+  .dashboard .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px; }
 
 /*# sourceMappingURL=index.css.map */

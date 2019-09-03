@@ -16,7 +16,8 @@ import Catalog from "./components/catalog";
 import Nav from "./components/nav";
 import Login from "./components/login";
 import Register from "./components/register";
-import Protected from './components/protected';
+import Dashboard from "./components/dashboard";
+// import Protected from './components/protected';
 import PageNotFound from './components/404';
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
@@ -37,8 +38,9 @@ const Root = () => {
                                 <Route path="/catalog" component={Catalog}/>
                                 <Route path="/login" component={Login}/>
                                 <Route path="/register" component={Register}/>
+                                <Route path="/dashboard" component={Dashboard}/>
 
-                                <Protected exact path="/admin"/>
+                                {/*<Protected exact path="/admin"/>*/}
                                 <Route component={PageNotFound}/>
                             </Switch>
                         </div>

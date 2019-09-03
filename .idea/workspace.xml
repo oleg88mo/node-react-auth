@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e772c1b5-66b8-4eb3-97b4-69992ccf43c2" name="Default Changelist" comment="" />
+    <list default="true" id="e772c1b5-66b8-4eb3-97b4-69992ccf43c2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/components/dashboard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/.sass-cache/8b0e0e6c21db8c3c21cba56c84dd5795267a5740/index.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/.sass-cache/8b0e0e6c21db8c3c21cba56c84dd5795267a5740/index.scssc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/login/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/nav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/nav/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/register/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/register/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/validation.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,31 +26,44 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="SCSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Pm9PtplXK3FT1Z4JgxCUZMiqLs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
     <property name="last_opened_file_path" value="D:/allProduct/app" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src" />
+      <recent name="D:\old prod\api\jwt-auth-with-mongoose" />
       <recent name="D:\old prod\api\jwt-auth-with-mongoose\client" />
+      <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\old prod\api\jwt-auth-with-mongoose\client" />
+      <recent name="D:\old prod\api\jwt-auth-with-mongoose" />
       <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src\redux\auth" />
       <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src\components\protected" />
       <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src" />
-      <recent name="D:\old prod\api\jwt-auth-with-mongoose\client" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -64,11 +92,31 @@
       <workItem from="1566887586969" duration="139000" />
       <workItem from="1566887750668" duration="5586000" />
       <workItem from="1566896042110" duration="18282000" />
-      <workItem from="1566976447419" duration="22229000" />
+      <workItem from="1566976447419" duration="22386000" />
+      <workItem from="1567062705279" duration="2592000" />
+      <workItem from="1567424470493" duration="5548000" />
+      <workItem from="1567431792646" duration="146000" />
+      <workItem from="1567438273630" duration="41000" />
+      <workItem from="1567494846381" duration="3215000" />
+      <workItem from="1567498399012" duration="1179000" />
+      <workItem from="1567518437106" duration="5050000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

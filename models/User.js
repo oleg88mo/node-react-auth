@@ -3,13 +3,13 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         require: true,
-        min: 6,
+        min: 2,
         max: 255
     },
     email: {
         type: String,
         require: true,
-        min: 6,
+        min: 4,
         max: 255
     },
     password: {
@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
         require: false
     },
     country: {
+        type: String,
+        require: false
+    },
+    avatar: {
         type: String,
         require: false
     },

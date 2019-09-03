@@ -12,13 +12,19 @@ html, body {
 }
 
 .content-container {
-  min-height: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  height: 100%;
+  //align-items: center;
+  //display: flex;
+  //justify-content: center;
 }
 
 // LOGIN & REGISTER
+.register-form-center, .login-form-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
 .login-form, .register-form {
   margin: 0 auto;
   background-color: $GREY;
@@ -51,7 +57,7 @@ html, body {
     opacity: .4;
     pointer-events: none;
 
-    &.valid{
+    &.valid {
       opacity: 1;
       pointer-events: visible;
     }
@@ -79,14 +85,31 @@ html, body {
   }
 }
 
-.login-form {
-  max-width: 340px;
-}
-
-.register-form {
-  max-width: 700px;
-}
-
 footer {
   text-align: center;
+}
+
+// dashboard
+.dashboard {
+  height: 100%;
+
+  .ant-layout-content {
+    margin-bottom: 0 !important;
+  }
+
+  .ant-menu-dark {
+    li:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .ant-layout-header {
+    padding: 0 15px !important;
+  }
+
+  .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+  }
 }

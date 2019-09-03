@@ -81,7 +81,10 @@ class Register extends Component {
                 })
                     .then(response => {
                         if (response && response.data) {
-                            this.props.setUser(response.data.user)
+                            this.props.setUser(response.data.user).then(() => {
+                                window.localStorage.setItem('userFromMD', JSON.stringify(response.data.user));
+                                window.location = '/';
+                            })
                         }
                     })
                     .catch(error => {
@@ -156,120 +159,122 @@ class Register extends Component {
         };
 
         return (
-            <div className="register-form">
-                <h2><Icon type="user"/> Register</h2>
-                <Form {...formItemLayout} onSubmit={this.handlerRegister}>
-                    <Form.Item label="Name">
-                        {getFieldDecorator('name', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please input your name!',
-                                },
-                            ],
-                        })(<Input
-                            onChange={e => this.handlerSetUserValue({['name']: e.target.value !== "" ? e.target.value : null})}
-                        />)}
-                    </Form.Item>
-                    <Form.Item label="E-mail">
-                        {getFieldDecorator('email', {
-                            rules: [
-                                {
-                                    type: 'email',
-                                    message: 'The input is not valid E-mail!',
-                                },
-                                {
-                                    required: true,
-                                    message: 'Please input your E-mail!',
-                                },
-                            ],
-                        })(<Input
-                            onChange={e => this.handlerSetUserValue({['email']: e.target.value !== "" ? e.target.value : null})}
-                        />)}
-                    </Form.Item>
-                    <Form.Item label="Password" hasFeedback>
-                        {getFieldDecorator('password', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please input your password!',
-                                },
-                                {
-                                    validator: this.validateToNextPassword,
-                                },
-                            ],
-                        })(<Input.Password
-                            onChange={e => this.handlerSetUserValue({['password']: e.target.value !== "" ? e.target.value : null})}
-                        />)}
-                    </Form.Item>
-                    <Form.Item label="Confirm Password" hasFeedback>
-                        {getFieldDecorator('confirm', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please confirm your password!',
-                                },
-                                {
-                                    validator: this.compareToFirstPassword,
-                                },
-                            ],
-                        })(<Input.Password
-                            onBlur={this.handleConfirmBlur}
-                            onChange={e => this.handlerSetUserValue({['confirmPassword']: e.target.value !== "" ? e.target.value : null})}
-                        />)}
-                    </Form.Item>
-                    <Form.Item label="Country">
-                        <Select
-                            style={{width: '100%'}}
-                            allowClear={true}
-                            onChange={this.handlerChangeCountry}
-                            showSearch
-                            showArrow={true}
-                        >
-                            {country && country.map(c => (
-                                <Option value={`${c.name},${c.phone}`} key={c.name}>{c.name}</Option>)
+            <div className="register-form-center">
+                <div className="register-form">
+                    <h2><Icon type="user"/> Register</h2>
+                    <Form {...formItemLayout} onSubmit={this.handlerRegister}>
+                        <Form.Item label="Name">
+                            {getFieldDecorator('name', {
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: 'Please input your name!',
+                                    },
+                                ],
+                            })(<Input
+                                onChange={e => this.handlerSetUserValue({['name']: e.target.value !== "" ? e.target.value : null})}
+                            />)}
+                        </Form.Item>
+                        <Form.Item label="E-mail">
+                            {getFieldDecorator('email', {
+                                rules: [
+                                    {
+                                        type: 'email',
+                                        message: 'The input is not valid E-mail!',
+                                    },
+                                    {
+                                        required: true,
+                                        message: 'Please input your E-mail!',
+                                    },
+                                ],
+                            })(<Input
+                                onChange={e => this.handlerSetUserValue({['email']: e.target.value !== "" ? e.target.value : null})}
+                            />)}
+                        </Form.Item>
+                        <Form.Item label="Password" hasFeedback>
+                            {getFieldDecorator('password', {
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: 'Please input your password!',
+                                    },
+                                    {
+                                        validator: this.validateToNextPassword,
+                                    },
+                                ],
+                            })(<Input.Password
+                                onChange={e => this.handlerSetUserValue({['password']: e.target.value !== "" ? e.target.value : null})}
+                            />)}
+                        </Form.Item>
+                        <Form.Item label="Confirm Password" hasFeedback>
+                            {getFieldDecorator('confirm', {
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: 'Please confirm your password!',
+                                    },
+                                    {
+                                        validator: this.compareToFirstPassword,
+                                    },
+                                ],
+                            })(<Input.Password
+                                onBlur={this.handleConfirmBlur}
+                                onChange={e => this.handlerSetUserValue({['confirmPassword']: e.target.value !== "" ? e.target.value : null})}
+                            />)}
+                        </Form.Item>
+                        <Form.Item label="Country">
+                            <Select
+                                style={{width: '100%'}}
+                                allowClear={true}
+                                onChange={this.handlerChangeCountry}
+                                showSearch
+                                showArrow={true}
+                            >
+                                {country && country.map(c => (
+                                    <Option value={`${c.name},${c.phone}`} key={c.name}>{c.name}</Option>)
+                                )}
+                            </Select>
+                        </Form.Item>
+                        <Form.Item label="Phone Number" className={`countryPhone ${countryPhone ? 'valid' : ''}`}>
+                            <span className="print-phone">{countryPhone}</span>
+                            <Input
+                                ref={node => {
+                                    this.inputPhone = node
+                                }}
+                                onChange={e => this.handlerSetUserValue({['selectedCountryPhone']: e.target.value !== "" ? `${countryPhone}${e.target.value}` : undefined})}
+                            />
+                        </Form.Item>
+                        <Form.Item className="full-center">
+                            {getFieldDecorator('agreement', {
+                                valuePropName: 'checked',
+                            })(
+                                <>
+                                    <Checkbox onChange={this.onChange}>
+                                        I have read the
+                                    </Checkbox>
+                                    <a href="#" onClick={this.showModal}>agreement</a>
+                                </>,
                             )}
-                        </Select>
-                    </Form.Item>
-                    <Form.Item label="Phone Number" className={`countryPhone ${countryPhone ? 'valid' : ''}`}>
-                        <span className="print-phone">{countryPhone}</span>
-                        <Input
-                            ref={node => {
-                                this.inputPhone = node
-                            }}
-                            onChange={e => this.handlerSetUserValue({['selectedCountryPhone']: e.target.value !== "" ? `${countryPhone}${e.target.value}` : undefined})}
-                        />
-                    </Form.Item>
-                    <Form.Item className="full-center">
-                        {getFieldDecorator('agreement', {
-                            valuePropName: 'checked',
-                        })(
-                            <>
-                                <Checkbox onChange={this.onChange}>
-                                    I have read the
-                                </Checkbox>
-                                <a href="#" onClick={this.showModal}>agreement</a>
-                            </>,
-                        )}
-                    </Form.Item>
-                    <Form.Item className="full-center">
-                        <Button type="primary" htmlType="submit" disabled={this.hasErrors(getFieldsError()) || !agree}>
-                            Register
-                        </Button>
-                        <br/>
-                        Or <Link to="/login">Logged in!</Link>
-                    </Form.Item>
-                </Form>
-                <Modal
-                    title="Basic Modal"
-                    visible={this.state.visible}
-                    onOk={this.handleOk}
-                    onCancel={this.handleCancel}
-                >
-                    <p>Some contents...</p>
-                </Modal>
-            </div>
-        )
+                        </Form.Item>
+                        <Form.Item className="full-center">
+                            <Button type="primary" htmlType="submit"
+                                    disabled={this.hasErrors(getFieldsError()) || !agree}>
+                                Register
+                            </Button>
+                            <br/>
+                            Or <Link to="/login">Logged in!</Link>
+                        </Form.Item>
+                    </Form>
+                    <Modal
+                        title="Basic Modal"
+                        visible={this.state.visible}
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                    >
+                        <p>Some contents...</p>
+                    </Modal>
+                </div>
+            </div>)
     }
 }
 
