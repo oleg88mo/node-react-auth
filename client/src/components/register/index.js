@@ -37,6 +37,7 @@ class Register extends Component {
         password: null,
         confirmPassword: null,
         country: null,
+        avatar: undefined,
         selectedCountry: undefined,
         phone: null,
         countryPhone: null,
@@ -70,12 +71,13 @@ class Register extends Component {
 
         this.props.form.validateFieldsAndScroll(err => {
             if (!err) {
-                const {name, email, password, selectedCountryPhone, selectedCountry} = this.state;
+                const {name, email, password, selectedCountryPhone, selectedCountry, avatar} = this.state;
 
                 axios.post('http://localhost:4000/api/user/register', {
                     name,
                     email,
                     password,
+                    avatar,
                     phone: selectedCountryPhone,
                     country: selectedCountry,
                 })

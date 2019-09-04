@@ -1,20 +1,9 @@
-import React,{Component} from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import {Redirect} from 'react-router-dom';
-import App from "../../app";
+import Dashboard from "../dashboard";
 
-class Protected extends Component{
-    render(){
-        return this.props.token !== null ? <App {...this.props}/> : <Redirect to="/login"/>
-    }
+export default function Protected() {
+    const isLoggin = window.localStorage.getItem('userFromMD');
+
+    return isLoggin !== null ? <Dashboard/> : <Redirect to="/login"/>
 }
-
-const mapStateToProps = state => ({
-    token: state.auth.token,
-});
-
-export default connect(
-    mapStateToProps,
-    null,
-)(Protected);
-

@@ -64,7 +64,19 @@ router.post('/login', async (req, res) => {
             avatar: user.avatar,
         }
     });
-    
+});
+
+// Find User in DB
+router.post('/auth', async (req, res) => {
+    const userId = req.body.id;
+
+    await User.findById(userId, (error) => {
+        if (error) {
+            return res.status(400).send(error.message);
+        } else {
+            res.send('User are required');
+        }
+    });
 });
 
 module.exports = router;

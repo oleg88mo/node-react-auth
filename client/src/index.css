@@ -33,29 +33,30 @@ html, body {
     text-align: center; }
     .login-form .full-center > [class*="ant-col"], .register-form .full-center > [class*="ant-col"] {
       width: 100% !important; }
-  .login-form .countryPhone, .register-form .countryPhone {
-    opacity: .4;
-    pointer-events: none; }
-    .login-form .countryPhone.valid, .register-form .countryPhone.valid {
-      opacity: 1;
-      pointer-events: visible; }
-    .login-form .countryPhone .print-phone, .register-form .countryPhone .print-phone {
-      width: 25%;
-      display: inline-block;
-      height: 32px;
-      background-color: #fafafa;
-      border: 1px solid #d9d9d9;
-      border-right: 0;
-      line-height: 32px;
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-      text-align: center;
-      vertical-align: middle; }
-    .login-form .countryPhone input, .register-form .countryPhone input {
-      width: calc(75% - 2px);
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      vertical-align: middle; }
+
+.countryPhone {
+  opacity: .4;
+  pointer-events: none; }
+  .countryPhone.valid {
+    opacity: 1;
+    pointer-events: visible; }
+  .countryPhone .print-phone {
+    width: 70px;
+    display: inline-block;
+    height: 32px;
+    background-color: #fafafa;
+    border: 1px solid #d9d9d9;
+    border-right: 0;
+    line-height: 32px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    text-align: center;
+    vertical-align: middle; }
+  .countryPhone input {
+    width: calc(100% - 72px);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    vertical-align: middle; }
 
 footer {
   text-align: center; }
@@ -68,6 +69,14 @@ footer {
     margin-top: 0; }
   .dashboard .ant-layout-header {
     padding: 0 15px !important; }
+  .dashboard .ant-advanced-search-form label {
+    min-width: 100px;
+    display: inline-block;
+    text-align: left; }
+  .dashboard .ant-advanced-search-form .ant-form-item {
+    display: flex; }
+  .dashboard .ant-advanced-search-form .ant-form-item-control-wrapper {
+    flex: 1; }
   .dashboard .logo {
     height: 32px;
     background: rgba(255, 255, 255, 0.2);

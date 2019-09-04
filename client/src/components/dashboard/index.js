@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Layout, Menu, Icon} from 'antd';
+import RenderComponents from './renderComponents';
 
 const {Header, Sider, Content} = Layout;
 const {SubMenu} = Menu;
@@ -7,31 +8,38 @@ const {SubMenu} = Menu;
 class Dashboard extends Component {
     state = {
         collapsed: false,
+        componentName: 'userInformation'
     };
 
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
+    toggle = () => this.setState({collapsed: !this.state.collapsed});
+
+    handlerRenderComponent = (e, componentName) => {
+        e.preventDefault();
+
+        this.setState({componentName})
     };
 
     render() {
         return (
             <Layout className="dashboard">
-                <Sider trigger={null} collapsible collapsed={this.state.collapsed} >
+                <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                     <div className="logo">dd</div>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['222']} defaultOpenKeys={['sub1']}>
                         <SubMenu
                             key="sub1"
                             title={
                                 <span>
                                   <Icon type="user"/>
-                                  <span>User</span>
+                                  <span>Profile</span>
                                 </span>
                             }
                         >
-                            <Menu.Item key="222">Tom</Menu.Item>
-                            <Menu.Item key="3333">Bill</Menu.Item>
+                            <Menu.Item key="222">
+                                <a onClick={(e) => this.handlerRenderComponent(e, 'userInformation')}>Information</a>
+                            </Menu.Item>
+                            <Menu.Item key="3333">
+                                <a onClick={(e) => this.handlerRenderComponent(e, 'chat')}>Chat</a>
+                            </Menu.Item>
                             <Menu.Item key="44444">Alex</Menu.Item>
                         </SubMenu>
                         <Menu.Item key="2">
@@ -60,7 +68,7 @@ class Dashboard extends Component {
                             minHeight: 280,
                         }}
                     >
-                        Content
+                        <RenderComponents componentName={this.state.componentName}/>
                     </Content>
                 </Layout>
             </Layout>

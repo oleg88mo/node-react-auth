@@ -1,27 +1,46 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
-import {Layout, Menu, Icon, Dropdown, Button} from "antd";
+import axios from 'axios';
+import {Layout, Menu, Icon, Dropdown, Button, notification} from "antd";
 
 const {Header} = Layout;
+const openNotificationWithIcon = (type, description) => {
+    notification[type]({
+        message: '/user/auth',
+        description
+    });
+};
 
 class Nav extends Component {
     state = {
         isLoggin: undefined,
-        userName: undefined
+        userName: undefined,
+        isLoadingAuth: false
     };
 
     async componentWillMount() {
         await this.handlerCheckIsLoggin()
     }
 
-    handlerCheckIsLoggin = () => {
-        const isLoggin = window.localStorage.getItem('userFromMD');
+    handlerCheckIsLoggin = async () => {
+        const isLoggin = await window.localStorage.getItem('userFromMD');
 
         if (isLoggin !== null) {
-            const {name} = JSON.parse(isLoggin);
+            const {id, name, email} = JSON.parse(isLoggin);
 
-            this.setState({isLoggin: true, userName: name})
+            if (id) {
+                this.setState({isLoadingAuth: true}, () => axios.post('http://localhost:4000/api/user/auth', {id})
+                    .then(response => {
+                        if (response.data === "User are required") {
+                            this.setState({isLoggin: true, userName: name ? name : email, isLoadingAuth: false})
+                        }
+                    })
+                    .catch(error => {
+                        openNotificationWithIcon('error', error.response.data)
+                    })
+                )
+            }
         }
     };
 
@@ -56,12 +75,13 @@ class Nav extends Component {
                     <Menu.Item key="1"><Link to="/">Home</Link></Menu.Item>
                     <Menu.Item key="2"><Link to="/catalog">Catalog</Link></Menu.Item>
                     <Menu.Item key="3"><Link to="/contacts">Contacts</Link></Menu.Item>
+                    {!this.state.isLoggin && <Menu.Item key="4" style={{float: 'right'}} className="ant-menu-item">
+                        {this.state.isLoadingAuth ? <Icon type="loading"/> : <Link to="/login"><Icon type="login"/>Login</Link>}
+                    </Menu.Item>}
                     {!this.state.isLoggin &&
-                    <Menu.Item key="4" style={{float: 'right'}} className="ant-menu-item"><Link to="/login"><Icon
-                        type="login"/>Login</Link></Menu.Item>}
-                    {!this.state.isLoggin &&
-                    <Menu.Item key="5" style={{float: 'right'}} className="ant-menu-item"><Link to="/register"><Icon
-                        type="user"/>Register</Link></Menu.Item>}
+                    <Menu.Item key="5" style={{float: 'right'}} className="ant-menu-item">
+                        {this.state.isLoadingAuth ? <Icon type="loading"/> : <Link to="/register"><Icon type="user"/>Register</Link>}
+                    </Menu.Item>}
                     {this.state.isLoggin && <Menu.Item key="6" style={{float: 'right'}}>
                         <Dropdown overlay={menu} trigger={['click']} placement="bottomRight">
                             <a className="ant-dropdown-link" href="#">
@@ -79,9 +99,8 @@ const mapStateToProps = state => ({
     user: state.users,
 });
 
-const mapDispatchers = {};
 
 export default connect(
     mapStateToProps,
-    mapDispatchers,
+    null,
 )(Nav);
