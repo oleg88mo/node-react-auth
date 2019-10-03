@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 import axios from 'axios';
 import {Layout, Menu, Icon, Dropdown, Button, notification} from "antd";
+// actions
+import {setUser} from '../../redux/users/actions'
 
 const {Header} = Layout;
 const openNotificationWithIcon = (type, description) => {
@@ -27,13 +29,14 @@ class Nav extends Component {
         const isLoggin = await window.localStorage.getItem('userFromMD');
 
         if (isLoggin !== null) {
-            const {id, name, email} = JSON.parse(isLoggin);
+            const user = JSON.parse(isLoggin);
 
-            if (id) {
-                this.setState({isLoadingAuth: true}, () => axios.post('http://localhost:4000/api/user/auth', {id})
+            if (user.id) {
+                this.setState({isLoadingAuth: true}, () => axios.post('http://localhost:4000/api/user/auth', {...user.id})
                     .then(response => {
                         if (response.data === "User are required") {
-                            this.setState({isLoggin: true, userName: name ? name : email, isLoadingAuth: false})
+                            this.props.setUser(user)
+                            this.setState({isLoggin: true, userName: user.name ? user.name : user.email, isLoadingAuth: false})
                         }
                     })
                     .catch(error => {
@@ -99,8 +102,11 @@ const mapStateToProps = state => ({
     user: state.users,
 });
 
+const mapDispatchers = {
+    setUser,
+};
 
 export default connect(
     mapStateToProps,
-    null,
+    mapDispatchers,
 )(Nav);

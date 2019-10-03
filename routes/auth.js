@@ -21,7 +21,6 @@ router.post('/register', async (req, res) => {
         password: hashPassword,
         phone: req.body.phone,
         country: req.body.country,
-        avatar: req.body.avatar,
     });
 
     try {
@@ -33,7 +32,6 @@ router.post('/register', async (req, res) => {
                 email: user.email,
                 phone: user.phone,
                 country: user.country,
-                avatar: user.avatar,
             }
         });
     } catch (err) {
@@ -54,6 +52,7 @@ router.post('/login', async (req, res) => {
 
     // create token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+
     res.header('auth-token', token).send({
         user: {
             id: user._id,
@@ -61,7 +60,6 @@ router.post('/login', async (req, res) => {
             email: user.email,
             phone: user.phone,
             country: user.country,
-            avatar: user.avatar,
         }
     });
 });
@@ -77,6 +75,14 @@ router.post('/auth', async (req, res) => {
             res.send('User are required');
         }
     });
+});
+
+// Update User
+router.post('/update', async (req, res) => {
+    const user = await User.findOne({email: 'res@gmail.com'});
+    user.avatar = 'ssssss'
+    user.save();
+    res.send('cool');
 });
 
 module.exports = router;

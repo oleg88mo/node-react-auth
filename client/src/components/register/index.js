@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import {connect} from "react-redux";
 import axios from 'axios';
 import {
     Form,
@@ -12,10 +11,6 @@ import {
     Modal,
     notification
 } from 'antd';
-
-import {
-    setUser
-} from '../../redux/users/actions'
 
 const {Option} = Select;
 
@@ -37,11 +32,11 @@ class Register extends Component {
         password: null,
         confirmPassword: null,
         country: null,
-        avatar: undefined,
         selectedCountry: undefined,
         phone: null,
         countryPhone: null,
         selectedCountryPhone: undefined,
+        avatar: '',
     };
 
     async componentWillMount() {
@@ -77,16 +72,14 @@ class Register extends Component {
                     name,
                     email,
                     password,
-                    avatar,
-                    phone: selectedCountryPhone,
-                    country: selectedCountry,
+                    phone: selectedCountryPhone ? selectedCountryPhone : '',
+                    country: selectedCountry ? selectedCountry : '',
+                    avatar: avatar ? avatar : '',
                 })
                     .then(response => {
                         if (response && response.data) {
-                            this.props.setUser(response.data.user).then(() => {
-                                window.localStorage.setItem('userFromMD', JSON.stringify(response.data.user));
-                                window.location = '/';
-                            })
+                            window.localStorage.setItem('userFromMD', JSON.stringify(response.data.user));
+                            window.location = '/';
                         }
                     })
                     .catch(error => {
@@ -280,6 +273,5 @@ class Register extends Component {
     }
 }
 
-const mapDispatchers = {setUser};
 const WrappedRegistrationForm = Form.create({name: 'register'})(Register);
-export default connect(null, mapDispatchers)(WrappedRegistrationForm);
+export default WrappedRegistrationForm;

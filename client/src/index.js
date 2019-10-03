@@ -51,3 +51,7 @@ const Root = () => {
 };
 
 ReactDOM.render(<Root/>, document.getElementById("web"));
+
+if(module.hot) {
+    module.hot.accept();
+}

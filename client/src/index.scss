@@ -1,4 +1,8 @@
 $GREY: #f0f2f5;
+$GREY_LIGHT: #d9d9d9;
+$BLUE_LIGHT: #1890ff;
+$WHITE_LIGHT: #fafafa;
+
 html, body {
   font-size: 18px;
 }
@@ -53,6 +57,13 @@ html, body {
       width: 100% !important;
     }
   }
+
+  .login-form-forgot {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    color: $BLUE_LIGHT;
+  }
 }
 
 .countryPhone {
@@ -68,8 +79,8 @@ html, body {
     width: 70px;
     display: inline-block;
     height: 32px;
-    background-color: #fafafa;
-    border: 1px solid #d9d9d9;
+    background-color: $WHITE_LIGHT;
+    border: 1px solid $GREY_LIGHT;
     border-right: 0;
     line-height: 32px;
     border-top-left-radius: 4px;
@@ -109,11 +120,12 @@ footer {
   }
 
   .ant-advanced-search-form {
-    label{
+    label {
       min-width: 100px;
       display: inline-block;
       text-align: left;
     }
+
     .ant-form-item {
       display: flex;
     }
@@ -130,4 +142,27 @@ footer {
     margin: 16px;
   }
 
+  .userInformation {
+    span.title {
+      font-weight: 500;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .ant-row {
+      *[class^='ant-col'] {
+        margin-top: 10px;
+      }
+    }
+    .advancedSettings{
+      margin-left: 10px;
+      position: relative;
+      top: 3px;
+      pointer-events: none;
+    }
+  }
+
+
 }
+
+

@@ -1,30 +1,118 @@
 import React from 'react';
 import axios from "axios";
-import {Form, Row, Col, Input, Button, Icon, Switch, Select} from 'antd';
+import {connect} from 'react-redux';
+import {Form, Row, Col, Input, Button, Icon, Switch, Select, Upload, message} from 'antd';
 
 const {Option} = Select;
 
 class UserInfo extends React.Component {
     state = {
+        loadingAvatar: false,
         expand: false,
         country: null,
-        countryPhone: null,
         visiblePasswordBlock: false,
+
+        name: null,
+        email: null,
+        password: null,
+        confirmPassword: null,
+        selectedCountry: undefined,
+        selectedCountryPhone: undefined,
+        resetValue: {
+            name: null,
+            email: null,
+            selectedCountry: undefined,
+            selectedCountryPhone: undefined,
+        },
+        avatar: null,
     };
 
-    async componentWillMount() {
+    static getDerivedStateFromProps(props, state) {
+        if (props.user && !state.name) {
+            const user = {
+                name: props.user.name,
+                email: props.user.email,
+                selectedCountry: props.user.country,
+                selectedCountryPhone: props.user.phone,
+            };
+
+            return {
+                ...state,
+                ...user,
+                resetValue: {
+                    ...user,
+                }
+            }
+        }
+    }
+
+    async componentDidMount() {
         await this.handlerGetCountry()
     }
 
-    handleSearch = e => {
+    handleChangeAvatar = info => {
+        if (info.file.status === 'uploading') {
+            this.setState({loadingAvatar: true});
+            return;
+        }
+        if (info.file.status === 'done') {
+            this.getBase64(info.file.originFileObj, avatar =>
+                this.setState({
+                    avatar,
+                    loadingAvatar: false,
+                }),
+            );
+        }
+    };
+    getBase64 = (img, callback) => {
+        const reader = new FileReader();
+
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
+    };
+
+    beforeUploadAvatar = file => {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+        if (!isJpgOrPng) {
+            message.error('You can only upload JPG/PNG file!');
+        }
+
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');
+        }
+
+        return isJpgOrPng && isLt2M;
+    };
+
+    handlerSubmit = e => {
         e.preventDefault();
 
-        this.props.form.validateFields((err, values) => {
-            console.log('Received values of form: ', values);
+        this.props.form.validateFields(err => {
+            if (!err) {
+                this.handlerUpdateUser();
+            }
         });
     };
 
-    handleReset = () => this.props.form.resetFields();
+    handlerUpdateUser = () => {
+        console.log('state', this.state);
+
+        axios.post('http://localhost:4000/api/user/update', {
+            ...this.state
+        }).then(res => {
+            console.log('uniqRes', res);
+        })
+    };
+
+    handlerReset = () => {
+        const {resetValue} = this.state;
+
+        this.setState({
+            ...resetValue
+        })
+        // this.props.form.resetFields()
+    };
 
     toggle = () => this.setState({expand: !this.state.expand});
 
@@ -33,8 +121,7 @@ class UserInfo extends React.Component {
     handlerGetCountry = () => axios.get('https://restcountries.eu/rest/v2/all').then(res => {
         let country = res && res.data.map(country => {
                 return {
-                    name: country.name,
-                    phone: country.callingCodes[0]
+                    name: country.name
                 };
             }
         );
@@ -44,92 +131,151 @@ class UserInfo extends React.Component {
 
     handlerChangeCountry = option => {
         if (option !== undefined) {
-            let oneCountry = option.split(',');
-
             this.setState({
-                countryPhone: `+${oneCountry[1]}`,
-                selectedCountry: oneCountry[0]
+                selectedCountry: option
             }, () => this.inputPhone.focus());
         } else {
-            this.setState({countryPhone: null, selectedCountry: null})
+            this.setState({selectedCountry: null})
         }
     };
 
-    render() {
-        const {getFieldDecorator} = this.props.form;
+    handlerSetUserValue = val => this.setState({...val});
 
-        const {expand, visiblePasswordBlock, country, countryPhone} = this.state;
+    render() {
+        const {
+            expand,
+            visiblePasswordBlock,
+            country,
+            name,
+            email,
+            selectedCountry,
+            selectedCountryPhone,
+            password,
+            confirmPassword,
+
+            avatar,
+        } = this.state;
+
+
+        const uploadButtonAvatar = (
+            <div>
+                <Icon type={this.state.loadingAvatar ? 'loading' : 'plus'}/>
+                <div className="ant-upload-text">Upload-!</div>
+            </div>
+        );
 
         return (
-            <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
+            <Form className="ant-advanced-search-form userInformation" onSubmit={this.handlerSubmit}>
                 <Row>
                     <Col span={24}>
-                        <Form.Item label="Name">
-                            {getFieldDecorator('name', {
-                                rules: [
-                                    {
-                                        required: true,
-                                        message: 'Name is required!',
-                                    },
-                                ],
-                            })(<Input placeholder="name"/>)}
-                        </Form.Item>
+                        <span className="title">Name</span>
+                        <Input
+                            placeholder="Enter name"
+                            value={name && name}
+                            onChange={e => this.handlerSetUserValue({['name']: e.target.value !== "" ? e.target.value : null})}
+                        />
                     </Col>
                     <Col span={24}>
-                        <Form.Item label="E-mail">
-                            {getFieldDecorator('email', {
-                                rules: [
-                                    {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!',
-                                    },
-                                    {
-                                        required: true,
-                                        message: 'E-mail is required!',
-                                    },
-                                ],
-                            })(<Input placeholder="email"/>)}
-                        </Form.Item>
+                        <span className="title">Email</span>
+                        <Input
+                            placeholder="Enter email"
+                            value={email && email}
+                            onChange={e => this.handlerSetUserValue({['email']: e.target.value !== "" ? e.target.value : null})}
+                        />
                     </Col>
-
-                    {expand &&
-                    <>
+                    {expand && <>
                         <Col span={24}>
-                            <Form.Item label="Country">
+                            {/*<Form.Item label="Country">*/}
+                            {/*    <Select*/}
+                            {/*        style={{width: '100%'}}*/}
+                            {/*        allowClear={true}*/}
+                            {/*        onChange={this.handlerChangeCountry}*/}
+                            {/*        showSearch*/}
+                            {/*        showArrow={true}*/}
+                            {/*        defaultValue={selectedCountry && selectedCountry}*/}
+                            {/*    >*/}
+                            {/*        {country && country.map(c => (*/}
+                            {/*            <Option value={c.name} key={c.name}>{c.name}</Option>)*/}
+                            {/*        )}*/}
+                            {/*    </Select>*/}
+                            {/*</Form.Item>*/}
+                            <div>
+                                <span className="title">Country</span>
                                 <Select
                                     style={{width: '100%'}}
                                     allowClear={true}
                                     onChange={this.handlerChangeCountry}
                                     showSearch
                                     showArrow={true}
+                                    value={selectedCountry && selectedCountry}
                                 >
                                     {country && country.map(c => (
-                                        <Option value={`${c.name},${c.phone}`} key={c.name}>{c.name}</Option>)
+                                        <Option value={c.name} key={c.name}>{c.name}</Option>)
                                     )}
                                 </Select>
-                            </Form.Item>
-                            <Form.Item label="Phone number" className={`countryPhone ${countryPhone ? 'valid' : ''}`}>
-                                <span className="print-phone">{countryPhone}</span>
+                            </div>
+                            {/*<Form.Item label="Phone number">*/}
+                            {/*    <Input*/}
+                            {/*        ref={node => {*/}
+                            {/*            this.inputPhone = node*/}
+                            {/*        }}*/}
+                            {/*        defaultValue={selectedCountryPhone && selectedCountryPhone}*/}
+                            {/*        onChange={e => this.handlerSetUserValue({['selectedCountryPhone']: e.target.value !== "" ? e.target.value : undefined})}*/}
+                            {/*    />*/}
+                            {/*</Form.Item>*/}
+                        </Col>
+                        <Col span={24}>
+                            <div>
+                                <span className="title">Phone number</span>
                                 <Input
+                                    placeholder="Enter phone"
+                                    value={selectedCountryPhone && selectedCountryPhone}
                                     ref={node => {
                                         this.inputPhone = node
                                     }}
-                                    onChange={e => this.handlerSetUserValue({['selectedCountryPhone']: e.target.value !== "" ? `${countryPhone}${e.target.value}` : undefined})}
+                                    onChange={e => this.handlerSetUserValue({['selectedCountryPhone']: e.target.value !== "" ? e.target.value : null})}
                                 />
-                            </Form.Item>
+                            </div>
+                        </Col>
+                        <Col span={24}>
+                            <span className="title">Avatar</span>
+                            <Upload
+                                name="avatar"
+                                listType="picture-card"
+                                className="avatar-uploader"
+                                showUploadList={false}
+                                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                beforeUpload={this.beforeUploadAvatar}
+                                onChange={this.handleChangeAvatar}
+                            >
+                                {avatar ? <img src={avatar} alt="avatar" style={{width: '100%'}}/> : uploadButtonAvatar}
+                            </Upload>
                         </Col>
                         <Col span={24}>
                             <hr/>
-                            <Form.Item label="Change password">
-                                {getFieldDecorator(`field`, {})(<>
-                                    <Switch onChange={this.switchPasswordBlock}/>
-
-                                    {visiblePasswordBlock && <>
-                                        <Input placeholder="password" type="password"/>
-                                        <Input placeholder="password" type="password"/>
-                                    </>}
-                                </>)}
-                            </Form.Item>
+                            <>
+                                <Switch onChange={this.switchPasswordBlock}/> <span className="advancedSettings">Advanced settings</span>
+                            </>
+                        </Col>
+                        <Col span={24}>
+                            {visiblePasswordBlock && <>
+                                <div>
+                                    <span className="title">Change password</span>
+                                </div>
+                                <div>
+                                    <Input
+                                        style={{marginBottom: '5px'}}
+                                        placeholder="Enter password"
+                                        value={password && password}
+                                        onChange={e => this.handlerSetUserValue({['selectedCountryPhone']: e.target.value !== "" ? e.target.value : null})}
+                                    />
+                                    <Input
+                                        placeholder="Confirm password"
+                                        value={confirmPassword && confirmPassword}
+                                        onChange={e => this.handlerSetUserValue({['selectedCountryPhone']: e.target.value !== "" ? e.target.value : null})}
+                                    />
+                                </div>
+                            </>}
                         </Col>
                     </>}
                     <Col span={24} style={{textAlign: 'right'}}>
@@ -140,7 +286,7 @@ class UserInfo extends React.Component {
                 <Row>
                     <Col span={24} style={{textAlign: 'right'}}>
                         <Button type="primary" htmlType="submit">Search</Button>
-                        <Button style={{marginLeft: 8}} onClick={this.handleReset}>Clear</Button>
+                        <Button style={{marginLeft: 8}} onClick={this.handlerReset}>Clear</Button>
                     </Col>
                 </Row>
             </Form>
@@ -148,6 +294,10 @@ class UserInfo extends React.Component {
     }
 }
 
-const WrappedUserInfo = Form.create({name: 'advanced_search'})(UserInfo);
 
-export default WrappedUserInfo;
+const mapStateToProps = state => ({
+    user: state.users.data,
+});
+
+const WrappedUserInfo = Form.create({name: 'advanced_search'})(UserInfo);
+export default connect(mapStateToProps, null)(WrappedUserInfo);

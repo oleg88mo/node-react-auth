@@ -33,6 +33,11 @@ html, body {
     text-align: center; }
     .login-form .full-center > [class*="ant-col"], .register-form .full-center > [class*="ant-col"] {
       width: 100% !important; }
+  .login-form .login-form-forgot, .register-form .login-form-forgot {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    color: #1890ff; }
 
 .countryPhone {
   opacity: .4;
@@ -81,5 +86,16 @@ footer {
     height: 32px;
     background: rgba(255, 255, 255, 0.2);
     margin: 16px; }
+  .dashboard .userInformation span.title {
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: block; }
+  .dashboard .userInformation .ant-row *[class^='ant-col'] {
+    margin-top: 10px; }
+  .dashboard .userInformation .advancedSettings {
+    margin-left: 10px;
+    position: relative;
+    top: 3px;
+    pointer-events: none; }
 
 /*# sourceMappingURL=index.css.map */

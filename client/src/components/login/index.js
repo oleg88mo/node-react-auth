@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {Form, Icon, Input, Button, notification} from 'antd';
@@ -12,13 +11,20 @@ const openNotificationWithIcon = (type, description) => {
 };
 
 class Login extends Component {
+    state = {
+        loading: false
+    };
+
     handlerLoggedIn = values => axios.post('http://localhost:4000/api/user/login', values)
         .then(response => {
+            console.log('req.body----', response)
             window.localStorage.setItem('userFromMD', JSON.stringify(response.data.user));
             window.location = '/';
+            this.setState({loading: false})
         })
         .catch(error => {
             openNotificationWithIcon('error', error.response.data)
+            this.setState({loading: false})
         });
 
     handleSubmit = e => {
@@ -26,13 +32,14 @@ class Login extends Component {
 
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.handlerLoggedIn(values)
+                this.setState({loading: true}, () => this.handlerLoggedIn(values))
             }
         });
     };
 
     render() {
         const {getFieldDecorator} = this.props.form;
+        const {loading} = this.state;
 
         return (
             <div className="login-form-center">
@@ -64,8 +71,16 @@ class Login extends Component {
                             )}
                         </Form.Item>
                         <Form.Item className="full-center">
-                            <a className="login-form-forgot" href="">Forgot password?</a>
-                            <Button type="primary" htmlType="submit" className="login-form-button">Log in</Button>
+                            <Button className="login-form-forgot">Forgot password?</Button>
+                            <Button type="primary"
+                                    htmlType="submit"
+                                    disabled={loading}
+                                    className="login-form-button"
+                            >
+                                {loading ?
+                                    <Icon type="loading"/> :
+                                    <Icon type="login"/>
+                                } Log in</Button>
                             Or <Link to="/register">Register now!</Link>
                         </Form.Item>
                     </Form>
@@ -74,11 +89,5 @@ class Login extends Component {
     }
 }
 
-const mapDispatchers = {};
-
 const WrappedNormalLoginForm = Form.create({name: 'normal_login'})(Login);
-
-export default connect(
-    null,
-    mapDispatchers,
-)(WrappedNormalLoginForm);
+export default WrappedNormalLoginForm;

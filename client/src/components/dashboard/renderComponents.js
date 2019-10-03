@@ -12,6 +12,8 @@ class RenderComponents extends Component {
                     return <UserInfo/>;
                 case 'chat':
                     return <Chat/>;
+                default:
+                    return null;
             }
         };
 

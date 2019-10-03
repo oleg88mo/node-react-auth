@@ -2,20 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e772c1b5-66b8-4eb3-97b4-69992ccf43c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/dashboard/components/chat.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/dashboard/components/userInformation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/dashboard/renderComponents.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/.sass-cache/8b0e0e6c21db8c3c21cba56c84dd5795267a5740/index.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/.sass-cache/8b0e0e6c21db8c3c21cba56c84dd5795267a5740/index.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/components/userInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/components/userInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/renderComponents.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/renderComponents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/login/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/nav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/nav/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/protected/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/protected/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/register/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/register/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/auth/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/auth/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/auth/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/auth/reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/auth/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/auth/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/users/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/users/reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/validation.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +43,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
-    <property name="last_opened_file_path" value="D:/allProduct/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -101,7 +104,20 @@
       <workItem from="1567498399012" duration="1179000" />
       <workItem from="1567518437106" duration="5325000" />
       <workItem from="1567580214858" duration="7071000" />
-      <workItem from="1567604170234" duration="6601000" />
+      <workItem from="1567604170234" duration="6741000" />
+      <workItem from="1567667512881" duration="1560000" />
+      <workItem from="1567685633876" duration="5102000" />
+      <workItem from="1567753729335" duration="8727000" />
+      <workItem from="1567764065908" duration="4815000" />
+      <workItem from="1568097578245" duration="2919000" />
+      <workItem from="1569329903076" duration="2281000" />
+      <workItem from="1569395478585" duration="14000" />
+      <workItem from="1569503611262" duration="499000" />
+      <workItem from="1569847619242" duration="1040000" />
+      <workItem from="1569940077375" duration="2585000" />
+      <workItem from="1570014180947" duration="7916000" />
+      <workItem from="1570087147673" duration="689000" />
+      <workItem from="1570095508984" duration="4422000" />
     </task>
     <servers />
   </component>
@@ -120,5 +136,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="439" height="402" key="Git.Branch.Popup" />
+    <state width="439" height="402" key="Git.Branch.Popup/1920.1080" />
+    <state width="439" height="402" key="Git.Branch.Popup@1920.1080" />
   </component>
 </project>
