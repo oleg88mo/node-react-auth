@@ -34,6 +34,7 @@ class UserInfo extends React.Component {
                 email: props.user.email,
                 selectedCountry: props.user.country,
                 selectedCountryPhone: props.user.phone,
+                avatar: props.user.avatar,
             };
 
             return {
@@ -47,7 +48,7 @@ class UserInfo extends React.Component {
     }
 
     async componentDidMount() {
-        await this.handlerGetCountry()
+        await this.handlerGetCountry();
     }
 
     handleChangeAvatar = info => {
@@ -64,6 +65,7 @@ class UserInfo extends React.Component {
             );
         }
     };
+
     getBase64 = (img, callback) => {
         const reader = new FileReader();
 
@@ -98,10 +100,8 @@ class UserInfo extends React.Component {
     handlerUpdateUser = () => {
         console.log('state', this.state);
 
-        axios.post('http://localhost:4000/api/user/update', {
-            ...this.state
-        }).then(res => {
-            console.log('uniqRes', res);
+        axios.post('http://localhost:4000/api/user/update', this.state).then(res => {
+            console.log('handlerUpdateUser', res);
         })
     };
 
@@ -155,7 +155,7 @@ class UserInfo extends React.Component {
 
             avatar,
         } = this.state;
-
+        // console.log('avatar',avatar);
 
         const uploadButtonAvatar = (
             <div>
@@ -250,6 +250,8 @@ class UserInfo extends React.Component {
                             >
                                 {avatar ? <img src={avatar} alt="avatar" style={{width: '100%'}}/> : uploadButtonAvatar}
                             </Upload>
+
+                            {avatar && <img src={`file://${avatar}`} alt="avatar" style={{width: '100px'}}/>}
                         </Col>
                         <Col span={24}>
                             <hr/>
@@ -285,8 +287,8 @@ class UserInfo extends React.Component {
                 </Row>
                 <Row>
                     <Col span={24} style={{textAlign: 'right'}}>
-                        <Button type="primary" htmlType="submit">Search</Button>
-                        <Button style={{marginLeft: 8}} onClick={this.handlerReset}>Clear</Button>
+                        <Button style={{marginRight: 8}} onClick={this.handlerReset}>Clear</Button>
+                        <Button type="primary" htmlType="submit">Submit</Button>
                     </Col>
                 </Row>
             </Form>

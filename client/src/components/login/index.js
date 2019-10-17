@@ -5,7 +5,7 @@ import {Form, Icon, Input, Button, notification} from 'antd';
 
 const openNotificationWithIcon = (type, description) => {
     notification[type]({
-        message: '/register',
+        message: '/login',
         description
     });
 };
@@ -17,7 +17,6 @@ class Login extends Component {
 
     handlerLoggedIn = values => axios.post('http://localhost:4000/api/user/login', values)
         .then(response => {
-            console.log('req.body----', response)
             window.localStorage.setItem('userFromMD', JSON.stringify(response.data.user));
             window.location = '/';
             this.setState({loading: false})

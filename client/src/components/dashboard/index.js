@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Layout, Menu, Icon} from 'antd';
 import RenderComponents from './renderComponents';
+import UserAvatar from './components/avatar';
 
 const {Header, Sider, Content} = Layout;
 const {SubMenu} = Menu;
@@ -23,7 +24,7 @@ class Dashboard extends Component {
         return (
             <Layout className="dashboard">
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-                    <div className="logo">dd</div>
+                    <UserAvatar />
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['222']} defaultOpenKeys={['sub1']}>
                         <SubMenu
                             key="sub1"
@@ -43,8 +44,8 @@ class Dashboard extends Component {
                             <Menu.Item key="44444">Alex</Menu.Item>
                         </SubMenu>
                         <Menu.Item key="2">
-                            <Icon type="video-camera"/>
-                            <span>nav 2</span>
+                            <Icon type="picture" />
+                            <span onClick={(e) => this.handlerRenderComponent(e, 'photos')}>Photo</span>
                         </Menu.Item>
                         <Menu.Item key="3">
                             <Icon type="upload"/>

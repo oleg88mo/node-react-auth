@@ -2,23 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e772c1b5-66b8-4eb3-97b4-69992ccf43c2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/components/dashboard/components/avatar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_utils/saveImageToFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/.sass-cache/8b0e0e6c21db8c3c21cba56c84dd5795267a5740/index.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/.sass-cache/8b0e0e6c21db8c3c21cba56c84dd5795267a5740/index.scssc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/components/userInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/components/userInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/dashboard/renderComponents.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/dashboard/renderComponents.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/login/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/nav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/nav/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/register/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/register/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/auth/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/auth/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/auth/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/auth/reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/auth/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/auth/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/users/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/users/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/users/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/users/reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/users/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/users/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/validation.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,12 +42,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Pm9PtplXK3FT1Z4JgxCUZMiqLs" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/allProduct/app" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -56,16 +62,16 @@
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\old prod\api\jwt-auth-with-mongoose" />
-      <recent name="D:\old prod\api\jwt-auth-with-mongoose\client" />
-      <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\old prod\api\jwt-auth-with-mongoose\client" />
       <recent name="D:\old prod\api\jwt-auth-with-mongoose" />
       <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src\redux\auth" />
       <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src\components\protected" />
+      <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\old prod\api\jwt-auth-with-mongoose" />
+      <recent name="D:\old prod\api\jwt-auth-with-mongoose\client" />
       <recent name="D:\old prod\api\jwt-auth-with-mongoose\client\src" />
     </key>
   </component>
@@ -117,7 +123,19 @@
       <workItem from="1569940077375" duration="2585000" />
       <workItem from="1570014180947" duration="7916000" />
       <workItem from="1570087147673" duration="689000" />
-      <workItem from="1570095508984" duration="4422000" />
+      <workItem from="1570095508984" duration="4580000" />
+      <workItem from="1570189801157" duration="9786000" />
+      <workItem from="1570431970469" duration="531000" />
+      <workItem from="1570447615528" duration="6625000" />
+      <workItem from="1570540588819" duration="666000" />
+      <workItem from="1570714601368" duration="4236000" />
+      <workItem from="1570778653743" duration="28000" />
+      <workItem from="1570782028603" duration="2722000" />
+      <workItem from="1570787575942" duration="2483000" />
+      <workItem from="1570793394522" duration="41000" />
+      <workItem from="1570793479859" duration="1377000" />
+      <workItem from="1570798233297" duration="5000" />
+      <workItem from="1571305964689" duration="13481000" />
     </task>
     <servers />
   </component>

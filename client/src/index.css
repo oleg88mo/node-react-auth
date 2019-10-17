@@ -7,6 +7,9 @@ html, body {
 .center {
   text-align: center; }
 
+img {
+  max-width: 100%; }
+
 .content-container {
   height: 100%; }
 
@@ -83,9 +86,12 @@ footer {
   .dashboard .ant-advanced-search-form .ant-form-item-control-wrapper {
     flex: 1; }
   .dashboard .logo {
-    height: 32px;
+    height: 55px;
     background: rgba(255, 255, 255, 0.2);
-    margin: 16px; }
+    margin: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
   .dashboard .userInformation span.title {
     font-weight: 500;
     margin-bottom: 4px;

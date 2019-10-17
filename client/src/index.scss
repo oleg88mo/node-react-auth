@@ -15,6 +15,11 @@ html, body {
   text-align: center;
 }
 
+img {
+  max-width: 100%;
+}
+
+
 .content-container {
   height: 100%;
   //align-items: center;
@@ -137,9 +142,12 @@ footer {
 
 
   .logo {
-    height: 32px;
+    height: 55px;
     background: rgba(255, 255, 255, 0.2);
     margin: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .userInformation {
@@ -154,7 +162,8 @@ footer {
         margin-top: 10px;
       }
     }
-    .advancedSettings{
+
+    .advancedSettings {
       margin-left: 10px;
       position: relative;
       top: 3px;

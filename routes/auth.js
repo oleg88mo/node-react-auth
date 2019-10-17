@@ -3,6 +3,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const {registerValidation, loginValidation} = require('../validation');
+const {saveImageToFile} = require('../node_utils/saveImageToFile');
 
 router.post('/register', async (req, res) => {
     const {error} = registerValidation(req.body);
@@ -21,6 +22,7 @@ router.post('/register', async (req, res) => {
         password: hashPassword,
         phone: req.body.phone,
         country: req.body.country,
+        avatar: req.body.avatar,
     });
 
     try {
@@ -32,6 +34,7 @@ router.post('/register', async (req, res) => {
                 email: user.email,
                 phone: user.phone,
                 country: user.country,
+                avatar: user.avatar,
             }
         });
     } catch (err) {
@@ -60,6 +63,7 @@ router.post('/login', async (req, res) => {
             email: user.email,
             phone: user.phone,
             country: user.country,
+            avatar: user.avatar,
         }
     });
 });
@@ -79,10 +83,25 @@ router.post('/auth', async (req, res) => {
 
 // Update User
 router.post('/update', async (req, res) => {
-    const user = await User.findOne({email: 'res@gmail.com'});
-    user.avatar = 'ssssss'
-    user.save();
-    res.send('cool');
+    const {avatar, email} = req.body;
+    const user = await User.findOne({email});
+    const pathToImage = await saveImageToFile(avatar);
+
+     user.avatar = pathToImage ? pathToImage : '';
+
+     user.save();
+
+     res.send({
+         user: {
+             id: user._id,
+             name: user.name,
+             email: user.email,
+             phone: user.phone,
+             country: user.country,
+             avatar: user.avatar,
+         }
+     });
+
 });
 
 module.exports = router;

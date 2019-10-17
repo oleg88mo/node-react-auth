@@ -74,7 +74,7 @@ class Register extends Component {
                     password,
                     phone: selectedCountryPhone ? selectedCountryPhone : '',
                     country: selectedCountry ? selectedCountry : '',
-                    avatar: avatar ? avatar : '',
+                    avatar: avatar,
                 })
                     .then(response => {
                         if (response && response.data) {
